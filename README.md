@@ -4,7 +4,7 @@ A dark, premium personal portfolio website built with semantic HTML, modern CSS,
 
 ## Features
 - Responsive desktop, tablet, and mobile layouts
-- Featured projects for Bella Cucina and Aurelia Grand Hotel
+- Featured projects for Bella Cucina, Aurelia Grand Hotel, and Siam Drift
 - Direct live-demo and GitHub repository links
 - Mobile navigation with Escape-key support
 - Scroll reveal, progress indicator, and back-to-top control
@@ -26,6 +26,8 @@ In `index.html`, replace `YOUR_EMAIL_HERE` in the contact button's `mailto:` lin
 ## Featured projects
 - Bella Cucina — https://kushtrimaziri.github.io/bella-cucina/
 - Aurelia Grand Hotel — https://kushtrimaziri.github.io/aurelia-grand-hotel/
+- Siam Drift — https://kushtrimaziri.github.io/siam-drift/
+  - Source code: https://github.com/kushtrimaziri/siam-drift
 
 ## Tech
 HTML5 · CSS3 · Vanilla JavaScript · Git · GitHub Pages
