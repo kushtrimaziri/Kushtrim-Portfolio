@@ -1,9 +1,81 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const progressBar = document.querySelector('.scroll-progress');
-const backToTop = document.querySelector('.back-to-top');
-function closeMenu(){if(!menuToggle||!navLinks)return;menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open navigation menu');navLinks.classList.remove('open');document.body.classList.remove('menu-open');}
-if(menuToggle&&navLinks){menuToggle.addEventListener('click',()=>{const open=menuToggle.getAttribute('aria-expanded')==='true';menuToggle.setAttribute('aria-expanded',String(!open));menuToggle.setAttribute('aria-label',open?'Open navigation menu':'Close navigation menu');navLinks.classList.toggle('open',!open);document.body.classList.toggle('menu-open',!open);});navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});window.addEventListener('resize',()=>{if(window.innerWidth>680)closeMenu();});}
-function updateScrollUI(){const max=document.documentElement.scrollHeight-window.innerHeight;const progress=max>0?window.scrollY/max*100:0;if(progressBar)progressBar.style.width=`${progress}%`;if(backToTop)backToTop.classList.toggle('visible',window.scrollY>500);}window.addEventListener('scroll',updateScrollUI,{passive:true});updateScrollUI();if(backToTop)backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-const revealItems=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}}),{threshold:.12});revealItems.forEach(item=>observer.observe(item));}else revealItems.forEach(item=>item.classList.add('is-visible'));
-const year=document.querySelector('#year');if(year)year.textContent=new Date().getFullYear();
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const progressBar = document.querySelector(".scroll-progress");
+const backToTop = document.querySelector(".back-to-top");
+
+function closeMenu() {
+  if (!menuToggle || !navLinks) return;
+
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+  navLinks.classList.remove("open");
+  document.body.classList.remove("menu-open");
+}
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const open = menuToggle.getAttribute("aria-expanded") === "true";
+
+    menuToggle.setAttribute("aria-expanded", String(!open));
+    menuToggle.setAttribute(
+      "aria-label",
+      open ? "Open navigation menu" : "Close navigation menu"
+    );
+    navLinks.classList.toggle("open", !open);
+    document.body.classList.toggle("menu-open", !open);
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 680) closeMenu();
+  });
+}
+
+function updateScrollUI() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = max > 0 ? (window.scrollY / max) * 100 : 0;
+
+  if (progressBar) progressBar.style.width = `${progress}%`;
+  if (backToTop) {
+    backToTop.classList.toggle("visible", window.scrollY > 500);
+  }
+}
+
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+updateScrollUI();
+
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
+
+const year = document.querySelector("#year");
+if (year) year.textContent = new Date().getFullYear();
